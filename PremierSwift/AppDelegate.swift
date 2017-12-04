@@ -8,9 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: - UIApplicationDelegate Implementation
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let moviesViewController = MoviesViewController()
-        let navigationController = UINavigationController(rootViewController: moviesViewController)
-        window?.rootViewController = navigationController
+        window?.rootViewController = RootViewController()
         window?.makeKeyAndVisible()
         return true
     }

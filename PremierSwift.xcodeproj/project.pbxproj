@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EB151481FD5F100008CF876 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB151471FD5F100008CF876 /* APIService.swift */; };
+		0EB1514C1FD5F188008CF876 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB1514B1FD5F188008CF876 /* RootViewController.swift */; };
+		0EB1514F1FD5F21E008CF876 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB1514E1FD5F21E008CF876 /* LoadingView.swift */; };
+		0EB151511FD5F229008CF876 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB151501FD5F229008CF876 /* ErrorView.swift */; };
 		F81DFE481F8B8BB700528F3F /* UIKit+PremierStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFE471F8B8BB700528F3F /* UIKit+PremierStyles.swift */; };
 		F840A5E01D945CF8009325F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F840A5DF1D945CF8009325F7 /* AppDelegate.swift */; };
 		F840A5E21D945CF8009325F7 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F840A5E11D945CF8009325F7 /* MoviesViewController.swift */; };
@@ -25,6 +29,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0EB151471FD5F100008CF876 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		0EB1514B1FD5F188008CF876 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		0EB1514E1FD5F21E008CF876 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		0EB151501FD5F229008CF876 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		F81DFE471F8B8BB700528F3F /* UIKit+PremierStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+PremierStyles.swift"; sourceTree = "<group>"; };
 		F840A5DC1D945CF8009325F7 /* PremierSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PremierSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F840A5DF1D945CF8009325F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +78,41 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		0EB151461FD5F0CF008CF876 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F840A5EB1D945CF9009325F7 /* Info.plist */,
+				F840A5E61D945CF9009325F7 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0EB151491FD5F119008CF876 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0EB151471FD5F100008CF876 /* APIService.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		0EB1514A1FD5F163008CF876 /* RootViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0EB1514B1FD5F188008CF876 /* RootViewController.swift */,
+				0EB1514D1FD5F210008CF876 /* Views */,
+			);
+			path = RootViewController;
+			sourceTree = "<group>";
+		};
+		0EB1514D1FD5F210008CF876 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0EB1514E1FD5F21E008CF876 /* LoadingView.swift */,
+				0EB151501FD5F229008CF876 /* ErrorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F840A5D31D945CF8009325F7 = {
 			isa = PBXGroup;
 			children = (
@@ -92,10 +135,11 @@
 			isa = PBXGroup;
 			children = (
 				F840A5DF1D945CF8009325F7 /* AppDelegate.swift */,
+				0EB1514A1FD5F163008CF876 /* RootViewController */,
 				0EB151441FD5EC2A008CF876 /* Movies */,
 				0EB151451FD5EFEF008CF876 /* Extensions */,
-				F840A5E61D945CF9009325F7 /* Assets.xcassets */,
-				F840A5EB1D945CF9009325F7 /* Info.plist */,
+				0EB151461FD5F0CF008CF876 /* Resources */,
+				0EB151491FD5F119008CF876 /* Utils */,
 			);
 			path = PremierSwift;
 			sourceTree = "<group>";
@@ -212,9 +256,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EB1514C1FD5F188008CF876 /* RootViewController.swift in Sources */,
 				F81DFE481F8B8BB700528F3F /* UIKit+PremierStyles.swift in Sources */,
 				F840A5E21D945CF8009325F7 /* MoviesViewController.swift in Sources */,
+				0EB151481FD5F100008CF876 /* APIService.swift in Sources */,
+				0EB151511FD5F229008CF876 /* ErrorView.swift in Sources */,
 				F840A5E01D945CF8009325F7 /* AppDelegate.swift in Sources */,
+				0EB1514F1FD5F21E008CF876 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +394,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = PremierSwift/Info.plist;
+				INFOPLIST_FILE = PremierSwift/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = deliveroo.PremierSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -359,7 +407,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = PremierSwift/Info.plist;
+				INFOPLIST_FILE = PremierSwift/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = deliveroo.PremierSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";

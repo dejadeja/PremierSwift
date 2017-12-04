@@ -6,12 +6,23 @@ class MoviesViewController: UIViewController {
         let tableView: UITableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: NSStringFromClass(UITableViewCell.self))
+        tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: NSStringFromClass(MovieTableViewCell.self))
         return tableView
     }()
     
     private var movies: [[String: Any]] = []
-
+    private var moviesDataSource: MovieDataSource
+    
+    //MARK: - Initialiser
+    init(dataSource: MovieDataSource) {
+        moviesDataSource = dataSource
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,19 +55,21 @@ class MoviesViewController: UIViewController {
      }
 }
 
-extension MoviesViewController: UITableViewDelegate {
-    
-}
+extension MoviesViewController: UITableViewDelegate { }
 
 extension MoviesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        return moviesDataSource.numberOfMovies
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let movie = movies[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(UITableViewCell.self), for: indexPath)
-        cell.textLabel!.text = movie["title"] as? String
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(UITableViewCell.self), for: indexPath) as? MovieTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.movieTitle.text = moviesDataSource.movieTitle(atIndex: indexPath.row)
+        cell.movieOverview.text = moviesDataSource.movieOverView(atIndex: indexPath.row)
+        //cell.movieThumbnail.image = moviesDataSource.movieThumbnailImage(atIndex: indexPath.row)
         return cell
     }
 }

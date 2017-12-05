@@ -13,11 +13,14 @@ class MovieTableViewCell: UITableViewCell {
     //MARK: - Properties
     public lazy var movieTitle: UILabel = {
         let label: UILabel = UILabel()
+        label.numberOfLines = 3
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
         return label
     }()
     
     public lazy var movieOverview: UILabel = {
         let label: UILabel = UILabel()
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
         return label
     }()
     
@@ -52,12 +55,13 @@ class MovieTableViewCell: UITableViewCell {
         
         movieOverview.topAnchor.constraint(equalTo: movieThumbnail.bottomAnchor, constant: 5.0).isActive = true
         movieOverview.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10.0).isActive = true
-        movieOverview.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10.0).isActive = true
-        movieOverview.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 10.0).isActive = true
+        movieOverview.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        movieOverview.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0.0).isActive = true
         
         movieTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 20.0).isActive = true
         movieTitle.leadingAnchor.constraint(equalTo: movieThumbnail.trailingAnchor, constant: 8.0).isActive = true
-        
+        movieTitle.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 8.0).isActive = true
+
         movieThumbnail.topAnchor.constraint(equalTo: self.topAnchor, constant: 20.0).isActive = true
         movieThumbnail.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -80.0).isActive = true
         movieThumbnail.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -250.0).isActive = true

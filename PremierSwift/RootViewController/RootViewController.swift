@@ -55,12 +55,12 @@ class RootViewController: UIViewController {
             self?.errorView.isHidden = true
         
             let moviesDataSource = MovieDataSource(movies: movies)
-            self?.presentViewController(dataSource: moviesDataSource)
+            self?.presentMoviesViewController(dataSource: moviesDataSource)
         }
     }
     
-    //MARK: - Present ViewController
-    private func presentViewController(dataSource: MovieDataSource) {
+    //MARK: - Present Movies ViewController
+    private func presentMoviesViewController(dataSource: MovieDataSource) {
         let moviesViewController = MoviesViewController(dataSource: dataSource)
         let navigationController = UINavigationController(rootViewController: moviesViewController)
         

@@ -17,7 +17,7 @@ struct APIService {
     private typealias JSONArrayType = [Any]
 
     struct Consts {
-        static let baseURL = "https://api.themoviedb.org/3/movie/top_rated?"
+        static let baseFeedURL = "https://api.themoviedb.org/3/movie/top_rated?"
         static let mediaBaseURL = "https://image.tmdb.org/t/p/w500"
         //TODO: - Put API key in CocoaKeys
         static let apiKey = "e4f9e61f6ffd66639d33d3dde7e3159b"
@@ -32,7 +32,7 @@ struct APIService {
     static func retrieveMovieData(completion: @escaping MovieDataCompletionType) {
         let params = ["api_key": APIService.Consts.apiKey]
         
-        sessionManager.request(APIService.Consts.baseURL, parameters: params).responseJSON { dataResponse in
+        sessionManager.request(APIService.Consts.baseFeedURL, parameters: params).responseJSON { dataResponse in
             guard
                 let json = dataResponse.result.value as? JSONDictionaryType,
                 let jsonArray = json[APIService.Consts.defaultNode] as? JSONArrayType
@@ -59,7 +59,7 @@ struct APIService {
         }
     }
     
-    static func retrieveImages(endPoint: String, completion: @escaping MovieImageCompletionType) {
+    static func retrieveMoviePosterImages(endPoint: String, completion: @escaping MovieImageCompletionType) {
         let mediaUrl = "\(APIService.Consts.mediaBaseURL)\(endPoint)"
         
         sessionManager.request(mediaUrl).responseData { dataResponse in

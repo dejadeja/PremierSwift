@@ -35,7 +35,7 @@ extension MovieDataSource {
         let endpoint = movieThumbnailImageURL(atIndex: index)
         
         DispatchQueue.global(qos: .background).async { () -> Void in
-            APIService.retrieveImages(endPoint: endpoint!) { image in
+            APIService.retrieveMoviePosterImages(endPoint: endpoint!) { image in
                 guard image != nil else {
                     return
                 }

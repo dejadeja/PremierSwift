@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Movie: Codable {
+struct Movie: Encodable {
     //MARK: - Properties
     public var title: String?
     public var overview: String?

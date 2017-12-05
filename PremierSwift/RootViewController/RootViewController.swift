@@ -44,7 +44,9 @@ class RootViewController: UIViewController {
     
     //MARK: - Initialise DataSource
     private func initialiseDataSource() {
-        
+        APIService.retrieveMovieData { (movies) in
+            print(movies)
+        }
     }
     
     //MARK: - Present ViewController

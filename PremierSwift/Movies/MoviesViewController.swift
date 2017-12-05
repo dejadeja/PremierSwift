@@ -64,7 +64,11 @@ extension MoviesViewController: UITableViewDataSource {
         
         cell.movieTitle.text = moviesDataSource.movieTitle(atIndex: indexPath.row)
         cell.movieOverview.text = moviesDataSource.movieOverView(atIndex: indexPath.row)
-        //cell.movieThumbnail.image = moviesDataSource.movieThumbnailImage(atIndex: indexPath.row)
+        
+        moviesDataSource.movieThumbnailImage(atIndex: indexPath.row) { image in
+            cell.movieThumbnail.image = image
+        }
+        
         return cell
     }
 }

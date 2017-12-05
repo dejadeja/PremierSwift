@@ -31,7 +31,20 @@ extension MovieDataSource {
         return objectAtIndex(atIndex: index).overview
     }
     
-    public func movieThumbnailImage(atIndex index: Int) -> String? {
+    public func movieThumbnailImage(atIndex index: Int, completion: @escaping APIService.MovieImageCompletionType) {
+        let endpoint = movieThumbnailImageURL(atIndex: index)
+        
+        APIService.retrieveImages(endPoint: endpoint!) { image in
+            guard image != nil else {
+                return
+            }
+            
+            completion(image)
+        }
+    
+    }
+    
+    private func movieThumbnailImageURL(atIndex index: Int) -> String? {
         return objectAtIndex(atIndex: index).posterPathEndpoint
     }
     

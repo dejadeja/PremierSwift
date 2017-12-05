@@ -23,7 +23,6 @@ class MovieTableViewCell: UITableViewCell {
     
     public lazy var movieThumbnail: UIImageView = {
         let imageView: UIImageView = UIImageView()
-        imageView.backgroundColor = UIColor.darkGray
         return imageView
     }()
     

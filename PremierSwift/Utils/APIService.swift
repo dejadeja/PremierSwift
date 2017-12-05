@@ -12,11 +12,13 @@ import Alamofire
 struct APIService {
     //MARK: - Properties
     public typealias MovieDataCompletionType = ([Movie]) -> Void
+    public typealias MovieImageCompletionType = (UIImage?) -> Void
     private typealias JSONDictionaryType = [String: Any]
     private typealias JSONArrayType = [Any]
 
     struct Consts {
         static let baseURL = "https://api.themoviedb.org/3/movie/top_rated?"
+        static let mediaBaseURL = "https://image.tmdb.org/t/p/w500"
         //TODO: - Put API key in CocoaKeys
         static let apiKey = "e4f9e61f6ffd66639d33d3dde7e3159b"
         static let defaultNode = "results"
@@ -54,6 +56,19 @@ struct APIService {
             }
             
             completion(movies)
+        }
+    }
+    
+    static func retrieveImages(endPoint: String, completion: @escaping MovieImageCompletionType) {
+        let mediaUrl = "\(APIService.Consts.mediaBaseURL)\(endPoint)"
+        
+        sessionManager.request(mediaUrl).responseData { dataResponse in
+            guard let data = dataResponse.result.value else {
+                return
+            }
+            
+            let image = UIImage(data: data)
+            completion(image)
         }
     }
 }

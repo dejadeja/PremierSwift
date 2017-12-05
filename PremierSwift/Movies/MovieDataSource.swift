@@ -34,14 +34,17 @@ extension MovieDataSource {
     public func movieThumbnailImage(atIndex index: Int, completion: @escaping APIService.MovieImageCompletionType) {
         let endpoint = movieThumbnailImageURL(atIndex: index)
         
-        APIService.retrieveImages(endPoint: endpoint!) { image in
-            guard image != nil else {
-                return
+        DispatchQueue.global(qos: .background).async { () -> Void in
+            APIService.retrieveImages(endPoint: endpoint!) { image in
+                guard image != nil else {
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    completion(image)
+                }
             }
-            
-            completion(image)
         }
-    
     }
     
     private func movieThumbnailImageURL(atIndex index: Int) -> String? {

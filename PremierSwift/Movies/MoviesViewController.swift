@@ -66,7 +66,9 @@ extension MoviesViewController: UITableViewDataSource {
         cell.movieOverview.text = moviesDataSource.movieOverView(atIndex: indexPath.row)
         
         moviesDataSource.movieThumbnailImage(atIndex: indexPath.row) { image in
-            cell.movieThumbnail.image = image
+            DispatchQueue.main.async {
+                cell.movieThumbnail.image = image
+            }
         }
         
         return cell

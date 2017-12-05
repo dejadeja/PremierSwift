@@ -17,6 +17,8 @@
 		0EE2D3D61FD6B4120059E8DE /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE2D3D51FD6B4120059E8DE /* CoreDataStack.swift */; };
 		0EE2D3D91FD6B5280059E8DE /* PremierSwift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0EE2D3D71FD6B5280059E8DE /* PremierSwift.xcdatamodeld */; };
 		0EE2D3DB1FD6B57D0059E8DE /* MovieManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE2D3DA1FD6B57D0059E8DE /* MovieManagedObject.swift */; };
+		0EE2D3DD1FD6D32C0059E8DE /* MovieCoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE2D3DC1FD6D32C0059E8DE /* MovieCoreDataStore.swift */; };
+		0EE2D3E01FD6D4D00059E8DE /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0EE2D3DF1FD6D4D00059E8DE /* Keys.plist */; };
 		5BDFF77516276053B177A41F /* Pods_PremierSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBC74CEC112A8E9987716792 /* Pods_PremierSwift.framework */; };
 		D862146C118F889571610B03 /* Pods_PremierSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660BF9835D0E4C543AA88686 /* Pods_PremierSwiftTests.framework */; };
 		F81DFE481F8B8BB700528F3F /* UIKit+PremierStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFE471F8B8BB700528F3F /* UIKit+PremierStyles.swift */; };
@@ -47,6 +49,8 @@
 		0EE2D3D51FD6B4120059E8DE /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		0EE2D3D81FD6B5280059E8DE /* PremierSwift.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PremierSwift.xcdatamodel; sourceTree = "<group>"; };
 		0EE2D3DA1FD6B57D0059E8DE /* MovieManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieManagedObject.swift; sourceTree = "<group>"; };
+		0EE2D3DC1FD6D32C0059E8DE /* MovieCoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCoreDataStore.swift; sourceTree = "<group>"; };
+		0EE2D3DF1FD6D4D00059E8DE /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		23A39040FFC18619AEB37C7B /* Pods-PremierSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PremierSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-PremierSwift/Pods-PremierSwift.release.xcconfig"; sourceTree = "<group>"; };
 		660BF9835D0E4C543AA88686 /* Pods_PremierSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PremierSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CBDFEAAA966A416961FA4BC /* Pods-PremierSwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PremierSwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PremierSwiftTests/Pods-PremierSwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				F840A5EB1D945CF9009325F7 /* Info.plist */,
+				0EE2D3DF1FD6D4D00059E8DE /* Keys.plist */,
 				F840A5E61D945CF9009325F7 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -150,10 +155,19 @@
 			isa = PBXGroup;
 			children = (
 				0EE2D3DA1FD6B57D0059E8DE /* MovieManagedObject.swift */,
+				0EE2D3DC1FD6D32C0059E8DE /* MovieCoreDataStore.swift */,
 				0EE2D3D51FD6B4120059E8DE /* CoreDataStack.swift */,
-				0EE2D3D71FD6B5280059E8DE /* PremierSwift.xcdatamodeld */,
+				0EE2D3DE1FD6D3340059E8DE /* Data Model */,
 			);
 			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		0EE2D3DE1FD6D3340059E8DE /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				0EE2D3D71FD6B5280059E8DE /* PremierSwift.xcdatamodeld */,
+			);
+			path = "Data Model";
 			sourceTree = "<group>";
 		};
 		657F27BCDE2F690065BA0F86 /* Pods */ = {
@@ -310,6 +324,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EE2D3E01FD6D4D00059E8DE /* Keys.plist in Resources */,
 				F840A5E71D945CF9009325F7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +452,7 @@
 				0EB151561FD5F981008CF876 /* Movie.swift in Sources */,
 				F840A5E21D945CF8009325F7 /* MoviesViewController.swift in Sources */,
 				0EB151541FD5F96C008CF876 /* MovieDataSource.swift in Sources */,
+				0EE2D3DD1FD6D32C0059E8DE /* MovieCoreDataStore.swift in Sources */,
 				0EE2D3D61FD6B4120059E8DE /* CoreDataStack.swift in Sources */,
 				0EB151481FD5F100008CF876 /* APIService.swift in Sources */,
 				0EB151511FD5F229008CF876 /* ErrorView.swift in Sources */,

@@ -18,9 +18,10 @@ class LoadingView: UIView {
     }()
     
     private var loadingLabel: UILabel = {
-        let label: UILabel = UILabel()
-        //label.font = UIFont(name: "Avenir-Light", size: 8.0)
+        let label = UILabel()
+        label.font = UIFont(name: "Avenir Next", size: 12.0)
         label.textColor = UIColor.white
+        label.text = "LOADING..."
         return label
     }()
     
@@ -28,8 +29,10 @@ class LoadingView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = #colorLiteral(red: 0.01619968191, green: 0.8010149598, blue: 0.7360114455, alpha: 1)
-        self.addSubview(loadingLabel)
+        
         self.addSubview(loadingActivityIndicator)
+        self.addSubview(loadingLabel)
+        
         constrainViewsToCenter(activityIndicator: loadingActivityIndicator, label: loadingLabel)
     }
     

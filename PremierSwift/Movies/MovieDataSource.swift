@@ -18,6 +18,7 @@ class MovieDataSource {
     }
 }
 
+//MARK: - Retriever functions
 extension MovieDataSource {
     public var numberOfMovies: Int {
         return movies.count
@@ -34,6 +35,7 @@ extension MovieDataSource {
     public func movieThumbnailImage(atIndex index: Int, completion: @escaping APIService.MovieImageCompletionType) {
         let endpoint = movieThumbnailImageURL(atIndex: index)
         
+        //TODO - Just a get, no networking in the VM
         DispatchQueue.global(qos: .background).async { () -> Void in
             APIService.retrieveMoviePosterImages(endPoint: endpoint!) { image in
                 guard image != nil else {

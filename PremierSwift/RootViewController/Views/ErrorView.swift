@@ -13,7 +13,9 @@ class ErrorView: UIView {
     //MARK: - Properties
     private var errorLabel: UILabel = {
         let label: UILabel = UILabel()
-        label.font = UIFont(name: "Avenir-Light", size: 8.0)
+        label.font = UIFont(name: "Avenir Next", size: 12.0)
+        label.textColor = UIColor.white
+        label.text = "📱 An error has occured. Please try again."
         return label
     }()
     
@@ -33,6 +35,6 @@ class ErrorView: UIView {
     private func constrainViewsToCenter(label: UILabel) {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        label.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 25.0).isActive = true
+        label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
 }

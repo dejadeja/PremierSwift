@@ -9,10 +9,11 @@
 import Foundation
 import CoreData
 
+@objc(MovieManagedObject)
 class MovieManagedObject: NSManagedObject {
-    //MARK: - Save to core data
-    
-    //MARK: - Fetch from core data
-    
-    //MARK: - Delete from core data
+    //MARK: - Properties
+    @NSManaged var title: String?
+    @NSManaged var overview: String?
+    @NSManaged var uid: NSNumber?
+    @NSManaged var image: Data?
 }

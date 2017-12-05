@@ -10,7 +10,6 @@ class MoviesViewController: UIViewController {
         return tableView
     }()
     
-    private var movies: [[String: Any]] = []
     private var moviesDataSource: MovieDataSource
     
     //MARK: - Initialiser

@@ -19,8 +19,6 @@ struct APIService {
     struct Consts {
         static let baseFeedURL = "https://api.themoviedb.org/3/movie/top_rated?"
         static let mediaBaseURL = "https://image.tmdb.org/t/p/w500"
-        //TODO: - Put API key in CocoaKeys
-        static let apiKey = "e4f9e61f6ffd66639d33d3dde7e3159b"
         static let defaultNode = "results"
     }
     
@@ -30,7 +28,8 @@ struct APIService {
     
     //MARK: - Request for data
     static func retrieveMovieData(completion: @escaping MovieDataCompletionType) {
-        let params = ["api_key": APIService.Consts.apiKey]
+        let apiKey = getAPIKey()
+        let params = ["api_key": apiKey]
         
         sessionManager.request(APIService.Consts.baseFeedURL, parameters: params).responseJSON { dataResponse in
             guard
@@ -57,5 +56,17 @@ struct APIService {
             let image = UIImage(data: data)
             completion(image)
         }
+    }
+    
+    //MARK: - Gets api key from .plist
+    static func getAPIKey() -> String {
+        guard
+            let path = Bundle.main.path(forResource: "Keys", ofType: "plist"),
+            let keyDictionary = NSDictionary(contentsOfFile: path),
+            let key = keyDictionary["apiKey"] as? String else {
+            return ""
+        }
+        
+        return key
     }
 }

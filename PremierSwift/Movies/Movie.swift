@@ -17,4 +17,24 @@ struct Movie: Encodable {
     enum CodingKeys: String, CodingKey {
         case posterPathEndpoint = "poster_path"
     }
+    
+    //MARK: - Parse movies
+    static func parseMovie(jsonArray array: APIService.JSONArrayType) -> [Movie] {
+        var movies: [Movie] = []
+        
+        array.forEach { movie in
+            guard
+                let movieDict = movie as? APIService.JSONDictionaryType,
+                let title = movieDict["title"] as? String,
+                let overview = movieDict["overview"] as? String,
+                let posterPath = movieDict["poster_path"] as? String else {
+                    return
+            }
+            
+            let currentMovie = Movie(title: title, overview: overview, posterPathEndpoint: posterPath)
+            movies.append(currentMovie)
+        }
+        
+        return movies
+    }
 }

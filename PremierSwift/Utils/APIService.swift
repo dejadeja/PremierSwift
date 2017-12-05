@@ -13,8 +13,8 @@ struct APIService {
     //MARK: - Properties
     public typealias MovieDataCompletionType = ([Movie]) -> Void
     public typealias MovieImageCompletionType = (UIImage?) -> Void
-    private typealias JSONDictionaryType = [String: Any]
-    private typealias JSONArrayType = [Any]
+    public typealias JSONDictionaryType = [String: Any]
+    public typealias JSONArrayType = [Any]
 
     struct Consts {
         static let baseFeedURL = "https://api.themoviedb.org/3/movie/top_rated?"
@@ -41,20 +41,7 @@ struct APIService {
                 return
             }
             
-            var movies: [Movie] = []
-            jsonArray.forEach { movie in
-               guard
-                    let movieDict = movie as? JSONDictionaryType,
-                    let title = movieDict["title"] as? String,
-                    let overview = movieDict["overview"] as? String,
-                    let posterPath = movieDict["poster_path"] as? String else {
-                        return
-                }
-                
-                let currentMovie = Movie(title: title, overview: overview, posterPathEndpoint: posterPath)
-                movies.append(currentMovie)
-            }
-            
+            let movies = Movie.parseMovie(jsonArray: jsonArray)
             completion(movies)
         }
     }

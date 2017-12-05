@@ -11,6 +11,8 @@ import CoreData
 
 class CoreDataStack {
     //MARK: - Properties
+    static var managedObjectContext = CoreDataStack.persistentContainer.viewContext
+
     static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "PremierSwift")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in

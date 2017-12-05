@@ -1,7 +1,6 @@
 import UIKit
 
 extension UIColor {
-    
     class var titleText: UIColor {
         return darkGray
     }
@@ -12,7 +11,6 @@ extension UIColor {
 }
 
 extension UIFont {
-    
     class var title: UIFont {
         return preferredFont(forTextStyle: UIFontTextStyle.title1)
     }
@@ -20,5 +18,4 @@ extension UIFont {
     class var body: UIFont {
         return preferredFont(forTextStyle: UIFontTextStyle.body)
     }
-    
 }

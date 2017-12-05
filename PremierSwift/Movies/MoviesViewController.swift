@@ -28,15 +28,6 @@ class MoviesViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         constrainTableViewToEdges()
-        
-        let moviesURL = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=e4f9e61f6ffd66639d33d3dde7e3159b")
-        URLSession.shared.dataTask(with: moviesURL!) { (responseData, _, _) in
-            if let data = responseData {
-                let JSON = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue:0)) as! [String: Any]
-                self.movies = JSON["results"] as! [[String: Any]]
-                self.moviesTableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
-            }
-        }.resume()
     }
     
     //MARK: - Configure NavigationBar
@@ -62,8 +53,12 @@ extension MoviesViewController: UITableViewDataSource {
         return moviesDataSource.numberOfMovies
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 250.0
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(UITableViewCell.self), for: indexPath) as? MovieTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(MovieTableViewCell.self), for: indexPath) as? MovieTableViewCell else {
             return UITableViewCell()
         }
         

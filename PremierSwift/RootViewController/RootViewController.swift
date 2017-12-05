@@ -44,13 +44,28 @@ class RootViewController: UIViewController {
     
     //MARK: - Initialise DataSource
     private func initialiseDataSource() {
-        APIService.retrieveMovieData { (movies) in
-            print(movies)
+        APIService.retrieveMovieData { [weak self] movies in
+            guard !movies.isEmpty else {
+                self?.loadingView.isHidden = true
+                self?.errorView.isHidden = false
+                return
+            }
+            
+            self?.loadingView.isHidden = true
+            self?.errorView.isHidden = true
+        
+            let moviesDataSource = MovieDataSource(movies: movies)
+            self?.presentViewController(dataSource: moviesDataSource)
         }
     }
     
     //MARK: - Present ViewController
-    private func presentViewController() {
+    private func presentViewController(dataSource: MovieDataSource) {
+        let moviesViewController = MoviesViewController(dataSource: dataSource)
+        let navigationController = UINavigationController(rootViewController: moviesViewController)
         
+        self.view.insertSubview(navigationController.view, at: 0)
+        self.addChildViewController(navigationController)
+        navigationController.didMove(toParentViewController: self)
     }
 }

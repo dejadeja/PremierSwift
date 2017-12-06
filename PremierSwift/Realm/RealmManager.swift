@@ -19,7 +19,6 @@ class RealmManager {
         }
     }
 
-    
     //MARK: - Save objects to Realm
     static func saveMoviesToRealm(movies: [RealmMovie]) {
         movies.forEach { movie in

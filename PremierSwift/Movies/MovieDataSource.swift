@@ -34,38 +34,10 @@ extension MovieDataSource {
     public func movieOverView(atIndex index: Int) -> String? {
         return objectAtIndex(atIndex: index).movieOverview
     }
-    
-    public func movieThumbnailImage(atIndex index: Int, completion: @escaping APIService.MovieImageCompletionType) {
-        guard let cachedImage = cache.object(forKey: NSNumber(value: index)) else {
-            requestImage(atIndex: index, completion: { image in
-                completion(image)
-            })
-            return
-        }
-        
-        completion(cachedImage)
-    }
-    
-    private func requestImage(atIndex index: Int, completion: @escaping APIService.MovieImageCompletionType) {
-        let endpoint = movieThumbnailImageURL(atIndex: index)
 
-        DispatchQueue.global(qos: .background).async { [weak self] () -> Void in
-            APIService.retrieveMoviePosterImages(thumbnailURL: endpoint!) { image in
-                guard let requestedImage = image else {
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    self?.cache.setObject(requestedImage, forKey: NSNumber(value: index))
-                    completion(image)
-                }
-            }
-        }
-    }
-    
-    public func movieThumbnailImageURL(atIndex index: Int) -> String? {
+    public func movieThumbnailImageURL(atIndex index: Int) -> URL? {
         let endpoint = objectAtIndex(atIndex: index).movieThumbnailImageURL
-        return "\(APIService.Consts.mediaBaseURL)\(endpoint)"
+        return URL(string: "\(APIService.Consts.mediaBaseURL)\(endpoint)")
     }
     
     private func objectAtIndex(atIndex index: Int) -> RealmMovie {

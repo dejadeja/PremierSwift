@@ -1,4 +1,5 @@
 import UIKit
+import AlamofireImage
 
 class MoviesViewController: UIViewController {
     //MARK: - Properties
@@ -61,12 +62,9 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.movieTitle.text = moviesDataSource.movieTitle(atIndex: indexPath.row)
         cell.movieOverview.text = moviesDataSource.movieOverView(atIndex: indexPath.row)
+        cell.movieThumbnail.af_setImage(withURL: moviesDataSource.movieThumbnailImageURL(atIndex: indexPath.row)!)
         
-        moviesDataSource.movieThumbnailImage(atIndex: indexPath.row) { image in
-            DispatchQueue.main.async {
-                cell.movieThumbnail.image = image
-            }
-        }
+
         
         return cell
     }

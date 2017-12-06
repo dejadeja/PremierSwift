@@ -8,11 +8,12 @@
 
 import Foundation
 import Alamofire
+import RealmSwift
 import Keys
 
 struct APIService {
     //MARK: - Properties
-    public typealias MovieDataCompletionType = ([Movie]) -> Void
+    public typealias MovieDataCompletionType = (Results<RealmMovie>?) -> Void
     public typealias MovieImageCompletionType = (UIImage?) -> Void
     public typealias JSONDictionaryType = [String: Any]
     public typealias JSONArrayType = [Any]
@@ -27,7 +28,7 @@ struct APIService {
         return Alamofire.SessionManager.default
     }()
     
-    //MARK: - Request for data
+    //MARK: - Request For Feed Data
     static func retrieveMovieData(completion: @escaping MovieDataCompletionType) {
         let apiKey = PremierSwiftKeys()
         let params = ["api_key": apiKey.movieAPIKey]
@@ -37,15 +38,17 @@ struct APIService {
                 let json = dataResponse.result.value as? JSONDictionaryType,
                 let jsonArray = json[APIService.Consts.defaultNode] as? JSONArrayType
                 else {
-                    completion([])
+                    completion(nil)
                     return
             }
             
             let movies = Movie.parseMovie(jsonArray: jsonArray)
-            completion(movies)
+            APIService.persistMovie(movies: movies)
+            completion(RealmManager.retrieveMoviesFromRealm())
         }
     }
     
+    //MARK: - Request For Image Data
     static func retrieveMoviePosterImages(thumbnailURL: String, completion: @escaping MovieImageCompletionType) {
         sessionManager.request(thumbnailURL).responseData { dataResponse in
             guard let data = dataResponse.result.value else {
@@ -54,5 +57,19 @@ struct APIService {
             
             completion(UIImage(data: data))
         }
+    }
+    
+    //MARK: - Persist Data
+    static func persistMovie(movies: [Movie]) {
+        var realmMovies: [RealmMovie] = []
+        
+        movies.forEach { movie in
+            guard let realmMovie = RealmMovie.initRealmMovie(withMovie: movie) else {
+                return
+            }
+            realmMovies.append(realmMovie)
+        }
+        
+        RealmManager.saveMoviesToRealm(movies: realmMovies)
     }
 }

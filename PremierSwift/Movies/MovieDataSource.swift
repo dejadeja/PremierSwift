@@ -8,14 +8,15 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class MovieDataSource {
     //MARK: - Properties
-    private var movies: [Movie] = []
+    fileprivate var movies: Results<RealmMovie>?
     private let cache = NSCache<NSNumber, UIImage>()
 
     //MARK: - Initialiser
-    init(movies: [Movie]) {
+    init(movies: Results<RealmMovie>) {
         self.movies = movies
     }
 }
@@ -23,15 +24,15 @@ class MovieDataSource {
 //MARK: - Retriever functions
 extension MovieDataSource {
     public var numberOfMovies: Int {
-        return movies.count
+        return movies!.count
     }
     
     public func movieTitle(atIndex index: Int) -> String? {
-        return objectAtIndex(atIndex: index).title
+        return objectAtIndex(atIndex: index).movieTitle
     }
     
     public func movieOverView(atIndex index: Int) -> String? {
-        return objectAtIndex(atIndex: index).overview
+        return objectAtIndex(atIndex: index).movieOverview
     }
     
     public func movieThumbnailImage(atIndex index: Int, completion: @escaping APIService.MovieImageCompletionType) {
@@ -63,14 +64,11 @@ extension MovieDataSource {
     }
     
     public func movieThumbnailImageURL(atIndex index: Int) -> String? {
-        guard let endpoint = objectAtIndex(atIndex: index).posterPathEndpoint else {
-            return nil
-        }
-        
+        let endpoint = objectAtIndex(atIndex: index).movieThumbnailImageURL
         return "\(APIService.Consts.mediaBaseURL)\(endpoint)"
     }
     
-    private func objectAtIndex(atIndex index: Int) -> Movie {
-        return movies[index]
+    private func objectAtIndex(atIndex index: Int) -> RealmMovie {
+        return movies![index]
     }
 }

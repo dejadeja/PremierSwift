@@ -7,6 +7,7 @@ target 'PremierSwift' do
 
   # Pods for PremierSwift
  pod 'Alamofire', '~> 4.5'
+ pod 'RealmSwift'
 
 plugin 'cocoapods-keys', {
   :project => 'PremierSwift',

@@ -45,7 +45,9 @@ class RootViewController: UIViewController {
     //MARK: - Initialise DataSource
     private func initialiseDataSource() {
         APIService.retrieveMovieData { [weak self] movies in
-            guard !movies.isEmpty else {
+            guard
+                let fetchedMovies = movies,
+                !fetchedMovies.isEmpty else {
                 self?.loadingView.isHidden = true
                 self?.errorView.isHidden = false
                 return
@@ -54,7 +56,7 @@ class RootViewController: UIViewController {
             self?.loadingView.isHidden = true
             self?.errorView.isHidden = true
         
-            let moviesDataSource = MovieDataSource(movies: movies)
+            let moviesDataSource = MovieDataSource(movies: movies!)
             self?.presentMoviesViewController(dataSource: moviesDataSource)
         }
     }

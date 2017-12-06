@@ -14,6 +14,8 @@
 		0EB151511FD5F229008CF876 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB151501FD5F229008CF876 /* ErrorView.swift */; };
 		0EB151541FD5F96C008CF876 /* MovieDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB151531FD5F96C008CF876 /* MovieDataSource.swift */; };
 		0EB151561FD5F981008CF876 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB151551FD5F981008CF876 /* Movie.swift */; };
+		0ED061651FD8A1A0000FDE0E /* RealmMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED061641FD8A1A0000FDE0E /* RealmMovie.swift */; };
+		0ED061671FD8A3EE000FDE0E /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED061661FD8A3EE000FDE0E /* RealmManager.swift */; };
 		5BDFF77516276053B177A41F /* Pods_PremierSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBC74CEC112A8E9987716792 /* Pods_PremierSwift.framework */; };
 		D862146C118F889571610B03 /* Pods_PremierSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660BF9835D0E4C543AA88686 /* Pods_PremierSwiftTests.framework */; };
 		F81DFE481F8B8BB700528F3F /* UIKit+PremierStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFE471F8B8BB700528F3F /* UIKit+PremierStyles.swift */; };
@@ -41,6 +43,8 @@
 		0EB151501FD5F229008CF876 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		0EB151531FD5F96C008CF876 /* MovieDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDataSource.swift; sourceTree = "<group>"; };
 		0EB151551FD5F981008CF876 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		0ED061641FD8A1A0000FDE0E /* RealmMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMovie.swift; sourceTree = "<group>"; };
+		0ED061661FD8A3EE000FDE0E /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		23A39040FFC18619AEB37C7B /* Pods-PremierSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PremierSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-PremierSwift/Pods-PremierSwift.release.xcconfig"; sourceTree = "<group>"; };
 		660BF9835D0E4C543AA88686 /* Pods_PremierSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PremierSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CBDFEAAA966A416961FA4BC /* Pods-PremierSwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PremierSwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PremierSwiftTests/Pods-PremierSwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +144,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		0ED061631FD8A186000FDE0E /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				0ED061661FD8A3EE000FDE0E /* RealmManager.swift */,
+				0ED061641FD8A1A0000FDE0E /* RealmMovie.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		657F27BCDE2F690065BA0F86 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +202,7 @@
 				0EB151451FD5EFEF008CF876 /* Extensions */,
 				0EB151461FD5F0CF008CF876 /* Resources */,
 				0EB151491FD5F119008CF876 /* Utils */,
+				0ED061631FD8A186000FDE0E /* Realm */,
 			);
 			path = PremierSwift;
 			sourceTree = "<group>";
@@ -365,11 +379,15 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-PremierSwift/Pods-PremierSwift-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Keys/Keys.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keys.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -424,6 +442,8 @@
 				0EB151541FD5F96C008CF876 /* MovieDataSource.swift in Sources */,
 				0EB151481FD5F100008CF876 /* APIService.swift in Sources */,
 				0EB151511FD5F229008CF876 /* ErrorView.swift in Sources */,
+				0ED061671FD8A3EE000FDE0E /* RealmManager.swift in Sources */,
+				0ED061651FD8A1A0000FDE0E /* RealmMovie.swift in Sources */,
 				F840A5E01D945CF8009325F7 /* AppDelegate.swift in Sources */,
 				0EB1514F1FD5F21E008CF876 /* LoadingView.swift in Sources */,
 			);

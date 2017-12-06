@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import Keys
 
 struct APIService {
     //MARK: - Properties
@@ -28,8 +29,8 @@ struct APIService {
     
     //MARK: - Request for data
     static func retrieveMovieData(completion: @escaping MovieDataCompletionType) {
-        let apiKey = APIService.getAPIKey()
-        let params = ["api_key": apiKey]
+        let apiKey = PremierSwiftKeys()
+        let params = ["api_key": apiKey.movieAPIKey]
         
         APIService.sessionManager.request(APIService.Consts.baseFeedURL, parameters: params).responseJSON { dataResponse in
             guard
@@ -53,17 +54,5 @@ struct APIService {
             
             completion(UIImage(data: data))
         }
-    }
-    
-    //MARK: - Gets api key from .plist
-    private static func getAPIKey() -> String {
-        guard
-            let path = Bundle.main.path(forResource: "Keys", ofType: "plist"),
-            let keyDictionary = NSDictionary(contentsOfFile: path),
-            let key = keyDictionary["apiKey"] as? String else {
-            return ""
-        }
-        
-        return key
     }
 }

@@ -8,6 +8,13 @@ target 'PremierSwift' do
   # Pods for PremierSwift
  pod 'Alamofire', '~> 4.5'
 
+plugin 'cocoapods-keys', {
+  :project => 'PremierSwift',
+  :keys => [
+    "MovieAPIKey"
+  ]
+}
+
   target 'PremierSwiftTests' do
     inherit! :search_paths
     # Pods for testing

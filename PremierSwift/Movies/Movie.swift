@@ -28,7 +28,7 @@ struct Movie: Encodable {
                 let title = movieDict["title"] as? String,
                 let overview = movieDict["overview"] as? String,
                 let posterPath = movieDict["poster_path"] as? String else {
-                    return
+                return
             }
             
             let currentMovie = Movie(title: title, overview: overview, posterPathEndpoint: posterPath)

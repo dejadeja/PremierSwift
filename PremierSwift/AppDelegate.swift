@@ -12,8 +12,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         return true
     }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        CoreDataStack.saveContext()
-    }
 }

@@ -45,9 +45,7 @@ class MoviesViewController: UIViewController {
      }
 }
 
-extension MoviesViewController: UITableViewDelegate { }
-
-extension MoviesViewController: UITableViewDataSource {
+extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return moviesDataSource.numberOfMovies
     }

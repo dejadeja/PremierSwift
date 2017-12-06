@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class MovieDataSource {
     //MARK: - Properties
@@ -35,9 +36,8 @@ extension MovieDataSource {
     public func movieThumbnailImage(atIndex index: Int, completion: @escaping APIService.MovieImageCompletionType) {
         let endpoint = movieThumbnailImageURL(atIndex: index)
         
-        //TODO - Just a get, no networking in the VM
-        DispatchQueue.global(qos: .background).async { () -> Void in
-            APIService.retrieveMoviePosterImages(endPoint: endpoint!) { image in
+       DispatchQueue.global(qos: .background).async { () -> Void in
+        APIService.retrieveMoviePosterImages(thumbnailURL: endpoint!) { image in
                 guard image != nil else {
                     return
                 }
@@ -49,8 +49,12 @@ extension MovieDataSource {
         }
     }
     
-    private func movieThumbnailImageURL(atIndex index: Int) -> String? {
-        return objectAtIndex(atIndex: index).posterPathEndpoint
+    public func movieThumbnailImageURL(atIndex index: Int) -> String? {
+        guard let endpoint = objectAtIndex(atIndex: index).posterPathEndpoint else {
+            return nil
+        }
+        
+        return "\(APIService.Consts.mediaBaseURL)\(endpoint)"
     }
     
     private func objectAtIndex(atIndex index: Int) -> Movie {

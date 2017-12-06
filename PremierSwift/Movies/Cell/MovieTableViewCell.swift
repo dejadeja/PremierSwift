@@ -39,6 +39,7 @@ class MovieTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubViews()
         constrainViews()
+        self.isUserInteractionEnabled = false
     }
     
     required init?(coder aDecoder: NSCoder) {

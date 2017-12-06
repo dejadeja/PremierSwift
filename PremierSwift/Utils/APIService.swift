@@ -28,16 +28,16 @@ struct APIService {
     
     //MARK: - Request for data
     static func retrieveMovieData(completion: @escaping MovieDataCompletionType) {
-        let apiKey = getAPIKey()
+        let apiKey = APIService.getAPIKey()
         let params = ["api_key": apiKey]
         
-        sessionManager.request(APIService.Consts.baseFeedURL, parameters: params).responseJSON { dataResponse in
+        APIService.sessionManager.request(APIService.Consts.baseFeedURL, parameters: params).responseJSON { dataResponse in
             guard
                 let json = dataResponse.result.value as? JSONDictionaryType,
                 let jsonArray = json[APIService.Consts.defaultNode] as? JSONArrayType
                 else {
                     completion([])
-                return
+                    return
             }
             
             let movies = Movie.parseMovie(jsonArray: jsonArray)
@@ -45,21 +45,18 @@ struct APIService {
         }
     }
     
-    static func retrieveMoviePosterImages(endPoint: String, completion: @escaping MovieImageCompletionType) {
-        let mediaUrl = "\(APIService.Consts.mediaBaseURL)\(endPoint)"
-        
-        sessionManager.request(mediaUrl).responseData { dataResponse in
+    static func retrieveMoviePosterImages(thumbnailURL: String, completion: @escaping MovieImageCompletionType) {
+        sessionManager.request(thumbnailURL).responseData { dataResponse in
             guard let data = dataResponse.result.value else {
                 return
             }
             
-            let image = UIImage(data: data)
-            completion(image)
+            completion(UIImage(data: data))
         }
     }
     
     //MARK: - Gets api key from .plist
-    static func getAPIKey() -> String {
+    private static func getAPIKey() -> String {
         guard
             let path = Bundle.main.path(forResource: "Keys", ofType: "plist"),
             let keyDictionary = NSDictionary(contentsOfFile: path),

@@ -12,7 +12,8 @@ import UIKit
 class MovieDataSource {
     //MARK: - Properties
     private var movies: [Movie] = []
-    
+    private let cache = NSCache<NSString, UIImage>()
+
     //MARK: - Initialiser
     init(movies: [Movie]) {
         self.movies = movies
@@ -34,10 +35,21 @@ extension MovieDataSource {
     }
     
     public func movieThumbnailImage(atIndex index: Int, completion: @escaping APIService.MovieImageCompletionType) {
-        let endpoint = movieThumbnailImageURL(atIndex: index)
+        guard let cachedImage = cache.object(forKey: "cachedThumbnail") else {
+            requestImage(atIndex: index, completion: { image in
+                completion(image)
+            })
+            return
+        }
         
-       DispatchQueue.global(qos: .background).async { () -> Void in
-        APIService.retrieveMoviePosterImages(thumbnailURL: endpoint!) { image in
+        completion(cachedImage)
+    }
+    
+    private func requestImage(atIndex index: Int, completion: @escaping APIService.MovieImageCompletionType) {
+        let endpoint = movieThumbnailImageURL(atIndex: index)
+
+        DispatchQueue.global(qos: .background).async { () -> Void in
+            APIService.retrieveMoviePosterImages(thumbnailURL: endpoint!) { image in
                 guard image != nil else {
                     return
                 }

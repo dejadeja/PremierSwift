@@ -48,17 +48,6 @@ struct APIService {
         }
     }
     
-    //MARK: - Request For Image Data
-    static func retrieveMoviePosterImages(thumbnailURL: String, completion: @escaping MovieImageCompletionType) {
-        sessionManager.request(thumbnailURL).responseData { dataResponse in
-            guard let data = dataResponse.result.value else {
-                return
-            }
-            
-            completion(UIImage(data: data))
-        }
-    }
-    
     //MARK: - Persist Data
     static func persistMovie(movies: [Movie]) {
         var realmMovies: [RealmMovie] = []

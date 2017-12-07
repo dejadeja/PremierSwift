@@ -13,7 +13,7 @@ class ErrorView: UIView {
     //MARK: - Properties
     private var errorLabel: UILabel = {
         let label: UILabel = UILabel()
-        label.font = UIFont(name: "Avenir Next", size: 12.0)
+        label.font = UIFont.body.withSize(12.0)
         label.textColor = UIColor.white
         label.text = "📱 An error has occured. Please try again."
         return label

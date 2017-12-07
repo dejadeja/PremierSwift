@@ -64,8 +64,6 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
         cell.movieOverview.text = moviesDataSource.movieOverView(atIndex: indexPath.row)
         cell.movieThumbnail.af_setImage(withURL: moviesDataSource.movieThumbnailImageURL(atIndex: indexPath.row)!)
         
-
-        
         return cell
     }
 }

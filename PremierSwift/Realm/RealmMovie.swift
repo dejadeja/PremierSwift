@@ -15,6 +15,7 @@ class RealmMovie: Object {
     @objc dynamic var movieOverview: String = ""
     @objc dynamic var movieThumbnailImageURL: String = ""
     
+    //MARK: - Initalise An Object Realm can use
     static func initRealmMovie(withMovie movie: Movie) -> RealmMovie? {
         let realmMovie = RealmMovie()
         

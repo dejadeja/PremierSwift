@@ -22,7 +22,6 @@ class RealmManager {
     //MARK: - Save objects to Realm
     static func saveMoviesToRealm(newMovies: [RealmMovie]) {
         let realm = try! Realm()
-        
         try! realm.write {
             realm.deleteAll()
         }

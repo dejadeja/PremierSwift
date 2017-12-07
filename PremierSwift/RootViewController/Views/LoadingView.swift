@@ -19,7 +19,7 @@ class LoadingView: UIView {
     
     private var loadingLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Avenir Next", size: 12.0)
+        label.font = UIFont.body.withSize(12.0)
         label.textColor = UIColor.white
         label.text = "LOADING..."
         return label

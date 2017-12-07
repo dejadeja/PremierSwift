@@ -70,6 +70,6 @@ struct APIService {
             realmMovies.append(realmMovie)
         }
         
-        RealmManager.saveMoviesToRealm(movies: realmMovies)
+        RealmManager.saveMoviesToRealm(newMovies: realmMovies)
     }
 }

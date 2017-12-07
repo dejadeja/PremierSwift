@@ -12,17 +12,22 @@ import RealmSwift
 class RealmManager {
     //MARK: - Properties
     let realm: Realm = try! Realm()
-
-     var movies: Results<RealmMovie> {
+    
+    var movies: Results<RealmMovie> {
         get {
             return realm.objects(RealmMovie.self)
         }
     }
-
+    
     //MARK: - Save objects to Realm
-    static func saveMoviesToRealm(movies: [RealmMovie]) {
-        movies.forEach { movie in
-            let realm = try! Realm()
+    static func saveMoviesToRealm(newMovies: [RealmMovie]) {
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.deleteAll()
+        }
+        
+        newMovies.forEach { movie in
             try! realm.write {
                 realm.add(movie)
             }

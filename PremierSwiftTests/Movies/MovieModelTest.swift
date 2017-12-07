@@ -26,8 +26,8 @@ class MovieModelTest: XCTestCase {
     }
     
     //MARK: - Test Creation of Movie
-    private func testCreationOfMovie() {
+    func testCreationOfMovie() {
         let movie = Movie(title: "The Dark Knight", overview: "This is a great movie, I really enjoyed this film. The best in the Batman trilogy", posterPathEndpoint: "\testEndpoint\0")
-        XCTAssertTrue(movie.title != "", "Movie creation complete")
+        XCTAssertTrue(movie.title != "")
     }
 }

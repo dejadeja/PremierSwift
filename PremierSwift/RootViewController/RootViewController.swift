@@ -56,7 +56,7 @@ class RootViewController: UIViewController {
             self?.loadingView.isHidden = true
             self?.errorView.isHidden = true
         
-            let moviesDataSource = MovieDataSource(movies: movies!)
+            let moviesDataSource = MovieDataSource(movies: fetchedMovies)
             self?.presentMoviesViewController(dataSource: moviesDataSource)
         }
     }

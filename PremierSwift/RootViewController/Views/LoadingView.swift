@@ -3,7 +3,7 @@
 //  PremierSwift
 //
 //  Created by Deja Cespedes on 04/12/2017.
-//  Copyright © 2017 Deliveroo. All rights reserved.
+//  Copyright © 2017 Technical Test. All rights reserved.
 //
 
 import UIKit

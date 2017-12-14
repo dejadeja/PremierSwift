@@ -7,6 +7,7 @@ class MoviesViewController: UIViewController {
         let tableView: UITableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 275
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: NSStringFromClass(MovieTableViewCell.self))
         return tableView
     }()
@@ -28,6 +29,7 @@ class MoviesViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         constrainTableViewToEdges()
+        
     }
     
     //MARK: - Configure NavigationBar
@@ -44,15 +46,16 @@ class MoviesViewController: UIViewController {
         moviesTableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         moviesTableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
      }
+    
+    //MARK: - Actions
+    public func presentDetailViewController(dataSource: MovieDataSource, atIndex index: Int) {
+       
+    }
 }
 
 extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return moviesDataSource.numberOfMovies
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 275.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,7 +66,19 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
         cell.movieTitle.text = moviesDataSource.movieTitle(atIndex: indexPath.row)
         cell.movieOverview.text = moviesDataSource.movieOverView(atIndex: indexPath.row)
         cell.movieThumbnail.af_setImage(withURL: moviesDataSource.movieThumbnailImageURL(atIndex: indexPath.row)!)
-        
+        cell.delegate = self
         return cell
+    }
+}
+
+//MARK: - The image view must be selectable not the cell
+extension MoviesViewController: MovieTableCellDetailDelegate {
+    func didSelectImageView(cell: MovieTableViewCell) {
+        guard let index = moviesTableView.indexPath(for: cell) else {
+            return
+        }
+        
+        let selectedIndex = index.row
+        presentDetailViewController(dataSource: moviesDataSource, atIndex: selectedIndex)
     }
 }

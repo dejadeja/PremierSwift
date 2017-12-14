@@ -19,3 +19,9 @@ extension UIFont {
         return preferredFont(forTextStyle: UIFontTextStyle.body)
     }
 }
+
+extension UIImageView {
+    func makeSelectable() {
+        self.isUserInteractionEnabled = true
+    }
+}

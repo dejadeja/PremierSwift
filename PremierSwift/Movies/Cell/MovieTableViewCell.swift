@@ -34,7 +34,7 @@ class MovieTableViewCell: UITableViewCell {
     
     public lazy var movieThumbnail: UIImageView = {
         let img = UIImageView()
-        img.makeSelectable()
+        img.isUserInteractionEnabled = true
         let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(presentDetailViewController))
         self.addGestureRecognizer(gestureRecogniser)
         return img

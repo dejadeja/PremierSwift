@@ -39,14 +39,16 @@ class MovieDetailViewController: UIViewController {
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigationBar()
         populateContent()
         addSubViews()
         constrainSubViews()
     }
     
     //MARK: - Configure Nav bar
-    private func configureNavigationBar() {
-        
+    public func configureNavigationBar() {
+        let backBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(dismissViewController))
+        navigationItem.leftBarButtonItems = [backBarButtonItem]
     }
     
     //MARK: - Populate Content
@@ -79,5 +81,10 @@ class MovieDetailViewController: UIViewController {
         movieOverview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         movieOverview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         movieOverview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+    }
+    
+    //MARK: - Dismiss VC
+    @objc private func dismissViewController() {
+        self.dismiss(animated: true, completion: nil)
     }
 }

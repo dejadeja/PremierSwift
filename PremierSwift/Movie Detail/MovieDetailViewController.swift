@@ -44,6 +44,11 @@ class MovieDetailViewController: UIViewController {
         constrainSubViews()
     }
     
+    //MARK: - Configure Nav bar
+    private func configureNavigationBar() {
+        
+    }
+    
     //MARK: - Populate Content
     private func populateContent() {
         self.title = moviesDataSource.movieTitle(atIndex: movieIndex)
@@ -62,6 +67,17 @@ class MovieDetailViewController: UIViewController {
         movieOverview.translatesAutoresizingMaskIntoConstraints = false
         movieImage.translatesAutoresizingMaskIntoConstraints = false
         
+        guard let navigationBarHeight = self.navigationController?.navigationBar.bounds.height else {
+            return
+        }
         
+        movieImage.topAnchor.constraint(equalTo: self.view.topAnchor, constant: navigationBarHeight).isActive = true
+        movieImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        movieImage.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        
+        movieOverview.topAnchor.constraint(equalTo: movieImage.bottomAnchor).isActive = true
+        movieOverview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        movieOverview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        movieOverview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
     }
 }

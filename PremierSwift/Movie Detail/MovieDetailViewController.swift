@@ -12,11 +12,6 @@ import AlamofireImage
 
 class MovieDetailViewController: UIViewController {
     //MARK: - Properties
-    private lazy var movieTitle: UILabel = {
-        let label = UILabel()
-        return label
-    }()
-    
     private lazy var movieOverview: UITextView = {
         let textView = UITextView()
         return textView
@@ -51,24 +46,22 @@ class MovieDetailViewController: UIViewController {
     
     //MARK: - Populate Content
     private func populateContent() {
-        movieTitle.text = moviesDataSource.movieTitle(atIndex: movieIndex)
+        self.title = moviesDataSource.movieTitle(atIndex: movieIndex)
         movieOverview.text = moviesDataSource.movieOverView(atIndex: movieIndex)
         movieImage.af_setImage(withURL: moviesDataSource.movieThumbnailImageURL(atIndex: movieIndex)!)
     }
     
     //MARK: - Add Subviews
     private func addSubViews() {
-        self.view.addSubview(movieTitle)
         self.view.addSubview(movieOverview)
         self.view.addSubview(movieImage)
     }
     
     //MARK: - Constrain Subviews
     private func constrainSubViews() {
-        movieTitle.translatesAutoresizingMaskIntoConstraints = false
         movieOverview.translatesAutoresizingMaskIntoConstraints = false
         movieImage.translatesAutoresizingMaskIntoConstraints = false
         
-        //movieTitle.tr
+        
     }
 }

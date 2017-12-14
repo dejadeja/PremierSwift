@@ -49,7 +49,10 @@ class MoviesViewController: UIViewController {
     
     //MARK: - Actions
     public func presentDetailViewController(dataSource: MovieDataSource, atIndex index: Int) {
-       
+        let movieDetailViewController: MovieDetailViewController = MovieDetailViewController(dataSource: moviesDataSource, index: index)
+        
+        let navigationController: UINavigationController = UINavigationController(rootViewController: movieDetailViewController)
+       self.navigationController?.present(navigationController, animated: true, completion: nil)
     }
 }
 
